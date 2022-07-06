@@ -35,26 +35,18 @@ exports.write = function(path, key, value){
     }
 }
 //read a file
-exports.read = function(path, key, value) {
+exports.read = function(path, key) {
 
     if(fs.existsSync(path)){
 
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
 
-        if(!string){
+        if(!key){
 
             var text = fs.readFileSync(path, `utf-8`)
 
-            if(text === undefined){
-
-                throw new Error ('File not found: ' + path)
-
-                } else {
-
-                    return text
-
-            }
+            return text
         
     }
 
@@ -70,23 +62,27 @@ exports.read = function(path, key, value) {
 
     if(obj[res] === undefined){
 
-        throw new Error ('File not found: ' + path)
+        throw new Error ('Key not found: ' + key)
 
         } else {
 
             return obj[res]
 
     }
-}
+    } else {
+        throw new Error ('File not found: ' + path)
+    }
 }
 //delete a key/file
-exports.delete = function (path, key, value){
+exports.delete = function (path, key){
 
     if(fs.existsSync(path)){
 
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
-
+        if(!key){
+            fs.unlinkSync(path)
+        }
         for(var i in obj){
 
             if (i = string){
@@ -99,7 +95,7 @@ exports.delete = function (path, key, value){
 
         if(obj[res] === undefined){
 
-            return false
+            throw new Error ('Key not found: ' + key)
 
             } else {
 
