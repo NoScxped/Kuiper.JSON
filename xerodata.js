@@ -8,9 +8,9 @@ exports.write = function(path, key, value){
 
         Object.keys(obj).forEach((jsonKey) => {
 
-            if(jsonKey === string){
+            if(jsonKey === key){
 
-                if(string in obj){
+                if(key in obj){
 
                     obj[jsonKey] = value
 
@@ -20,9 +20,9 @@ exports.write = function(path, key, value){
 
         })
 
-        if(string in obj === false){
+        if(key in obj === false){
 
-            obj[string] = value
+            obj[key] = value
 
         }
 
@@ -85,7 +85,7 @@ exports.delete = function (path, key){
         }
         for(var i in obj){
 
-            if (i = string){
+            if (i = key){
 
                 res = i
 
