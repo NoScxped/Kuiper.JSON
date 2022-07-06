@@ -38,17 +38,12 @@ exports.write = function(path, key, value){
 exports.read = function(path, key) {
 
     if(fs.existsSync(path)){
+        if(key){
+
 
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
 
-        if(!key){
-
-            var text = fs.readFileSync(path, `utf-8`)
-
-            return text
-        
-    }
 
     for(var i in obj){
 
@@ -60,18 +55,21 @@ exports.read = function(path, key) {
 
     }
 
-    if(obj[res] === undefined){
+    return obj[res]
 
-        throw new Error ('Key not found: ' + key)
-
-        } else {
-
-            return obj[res]
-
-    }
     } else {
+
+    var text = fs.readFileSync(path, `utf-8`)
+    return text
+
+}
+
+    } else {
+
         throw new Error ('File not found: ' + path)
+
     }
+    
 }
 //delete a key/file
 exports.delete = function (path, key){
