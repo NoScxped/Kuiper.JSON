@@ -93,16 +93,13 @@ exports.delete = function (path, key){
 
         }
 
-        if(obj[res] === undefined){
+        if(obj[res] != undefined){
 
-            throw new Error ('Key not found: ' + key)
-
-            } else {
-
-                delete obj[res]
-                fs.writeFileSync(path, JSON.stringify(obj))
+            delete obj[res]
+            fs.writeFileSync(path, JSON.stringify(obj))
 
         }
+
     } else {
         throw new Error ('File not found: ' + path)
     }
