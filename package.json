@@ -1,6 +1,6 @@
 {
   "name": "xerodata",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JSON Data Handler for Xero Discord Bot",
   "main": "xerodata.js",
   "scripts": {
