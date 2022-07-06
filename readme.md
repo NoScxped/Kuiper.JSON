@@ -41,3 +41,5 @@ Examples:
     //If the file exists, this function will return true.
     //Otherwise, this function will return false
 ```
+
+DISCLAIMER: The files do NOT have to have the .json extension to be treated like JSON files.
