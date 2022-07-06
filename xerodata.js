@@ -3,22 +3,23 @@ const fs = require('fs')
 exports.write = function(path, key, value){
 
     if(fs.existsSync(path)){
+        if(key && value){
 
-        var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
+            var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
 
-        Object.keys(obj).forEach((jsonKey) => {
+            Object.keys(obj).forEach((jsonKey) => {
 
-            if(jsonKey === key){
+                if(jsonKey === key){
 
-                if(key in obj){
+                    if(key in obj){
 
-                    obj[jsonKey] = value
+                        obj[jsonKey] = value
+
+                    }
 
                 }
 
-            }
-
-        })
+            })
 
         if(key in obj === false){
 
@@ -27,12 +28,16 @@ exports.write = function(path, key, value){
         }
 
         fs.writeFileSync(path, JSON.stringify(obj))
+    } else {
+        throw new Error('Expected key and value')
+    }
 
     } else {
 
         fs.writeFileSync(path, `{"${key}": "${value}"}`)
 
     }
+
 }
 //read a file
 exports.read = function(path, key) {
@@ -69,18 +74,20 @@ exports.read = function(path, key) {
         throw new Error ('File not found: ' + path)
 
     }
-    
+
 }
 //delete a key/file
 exports.delete = function (path, key){
 
     if(fs.existsSync(path)){
 
+        if(key){
+
+        
+
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
-        if(!key){
-            fs.unlinkSync(path)
-        }
+        
         for(var i in obj){
 
             if (i = key){
@@ -97,6 +104,9 @@ exports.delete = function (path, key){
             fs.writeFileSync(path, JSON.stringify(obj))
 
         }
+    } else {
+        fs.unlinkSync(path)
+    }
 
     } else {
         throw new Error ('File not found: ' + path)
