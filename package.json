@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/noscxped/xerodata/issues"
   },
-  "homepage": "https://github.com/noscxped/xerodata#readme"
+  "homepage": "https://github.com/noscxped/xerodata#readme",
+  "dependencies": {
+    "xerodata": "^1.0.5"
+  }
 }
