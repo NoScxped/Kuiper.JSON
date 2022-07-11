@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noscxped/xerodata.git"
+    "url": "git+https://github.com/noscxped/apollo.data.git"
   },
   "author": "Apollo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/noscxped/xerodata/issues"
+    "url": "https://github.com/noscxped/apollo.data/issues"
   },
-  "homepage": "https://github.com/noscxped/xerodata#readme",
+  "homepage": "https://github.com/noscxped/apollo.data#readme",
   "dependencies": {
-    "xerodata": "^1.0.5"
+    "apollo.data": "^1.0.0"
   }
 }
