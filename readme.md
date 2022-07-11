@@ -42,4 +42,13 @@ Documentation:
     //Otherwise, this function will return false
 ```
 
+```js
+    //data.readDir(path)
+
+    data.readDir("./text/")
+
+    //Returns all files in the provided directory as an Array.
+    //If the path is not a directory, it will throw an error
+```
+
 DISCLAIMER: The files do NOT have to have the .json extension to be treated like JSON files.

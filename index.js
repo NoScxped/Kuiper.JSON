@@ -126,3 +126,32 @@ exports.exists = function(path, key, value){
         }
 
     }
+
+//Get each file in a directory
+exports.readDir = function(path){
+
+    if(fs.existsSync(path)){
+
+        if(fs.statSync(path).isDirectory()){
+
+            var arr = []
+
+            var files = fs.readdirSync(path)
+
+            for(var i in files){
+
+                arr.push(files[i])
+
+            }
+            
+            if(arr.length === 0){ return undefined } else { return arr }
+
+        } else {
+            throw new Error ('Not a Directory')
+        }
+
+    } else {
+        throw new Error ('Directory not found')
+    }
+
+}
