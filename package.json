@@ -1,8 +1,8 @@
 {
-  "name": "xerodata",
-  "version": "1.0.5",
-  "description": "JSON Data Handler for Xero Discord Bot",
-  "main": "xerodata.js",
+  "name": "apollo.data",
+  "version": "1.0.0",
+  "description": "Basic JSON Data Handler",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
