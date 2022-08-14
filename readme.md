@@ -3,7 +3,7 @@ Apollo's JSON Data Handler
 Documentation:
 
 ```js
-    const data = require('apollo.data');
+    const data = require('kuiper.json');
 ```
 
 ```js
