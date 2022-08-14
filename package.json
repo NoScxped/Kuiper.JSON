@@ -1,5 +1,5 @@
 {
-  "name": "kuiper",
+  "name": "kuiper.json",
   "version": "1.2.0",
   "description": "Basic JSON Data Handler",
   "main": "index.js",
@@ -8,15 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noscxped/apollo.data.git"
+    "url": "git+https://github.com/noscxped/kuiper.json.git"
   },
   "author": "Xotic-Apollo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/noscxped/apollo.data/issues"
+    "url": "https://github.com/noscxped/kuiper.json/issues"
   },
-  "homepage": "https://github.com/noscxped/apollo.data#readme",
-  "dependencies": {
-    "apollo.data": "^1.0.1"
-  }
+  "homepage": "https://github.com/noscxped/kuiper.json#readme"
 }
