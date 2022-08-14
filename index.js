@@ -117,15 +117,39 @@ exports.exists = function(path, key, value){
 
     if(fs.existsSync(path)){
 
-        return true
+        if(key){
 
-        } else {
 
-            return false
-
+            var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
+            var res = ''
+    
+    
+        for(var i in obj){
+    
+            if (i = key){
+    
+                res = i
+    
+            }
+    
         }
 
+        if(!obj[res]){return false } else {return true}
+    
+        } else {
+    
+            return true
+
+        }
+    
+    } else {
+        return false
     }
+
+        
+}
+
+
 
 //Get each file in a directory
 exports.readDir = function(path){

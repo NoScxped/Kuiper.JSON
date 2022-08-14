@@ -36,9 +36,9 @@ Documentation:
 ```js
     //data.exists(path)
 
-    data.exists("./text/file.json")
+    data.exists("./text/file.json") || data.exists("./text/file.json", 'myNewKey')
 
-    //If the file exists, this function will return true.
+    //If the file/key exists, this function will return true.
     //Otherwise, this function will return false
 ```
 
