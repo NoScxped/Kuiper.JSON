@@ -1,5 +1,5 @@
 {
-  "name": "apollo.data",
+  "name": "kuiper",
   "version": "1.2.0",
   "description": "Basic JSON Data Handler",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/noscxped/apollo.data.git"
   },
-  "author": "Apollo",
+  "author": "Xotic-Apollo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noscxped/apollo.data/issues"
