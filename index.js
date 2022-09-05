@@ -27,7 +27,7 @@ exports.write = function(path, key, value){
 
         }
 
-        fs.writeFileSync(path, JSON.stringify(obj))
+        fs.writeFileSync(path, JSON.stringify(obj, null, 2))
     } else {
         throw new Error('Expected key and value')
     }
@@ -44,7 +44,6 @@ exports.read = function(path, key) {
 
     if(fs.existsSync(path)){
         if(key){
-
 
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
