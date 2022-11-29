@@ -4,6 +4,9 @@
 
 *Interims are **Kuiper.JSON's** way of temporarily storing JSON data without saving it to a file! Think of an **"Interim"** as an unsaved JSON file being edited.*
 
+
+Documentation:
+
 ```js
     const data = require('kuiper.json');
 ```
@@ -60,14 +63,14 @@
 
     data.read("./text/file.json", "myNewKey");
 
-    //This will return "myNewValue", the Value we wrote from data.write().
+    //This will return "myNewValue", the Value we wrote from xero.write().
     //If no key is specified, the entire file is returned as a string.
 ```
 
 ```js
     //data.delete(path, key)
 
-    data.delete("./text/file.json", "myNewKey") || data.delete("./text/file.json");
+    data.delete("./text/file.json", "myNewKey");
 
     //This will delete the Key "myNewKey" and its Value.
     //If no key is specified, the entire file is deleted.
@@ -91,4 +94,4 @@
     //If the path is not a directory, it will throw an error
 ```
 
-*DISCLAIMER: The files do NOT have to have the .json extension to be treated like JSON files. However they MUST be properly JSON formatted, or Kupier.JSON will throw an error.*
+DISCLAIMER: The files do NOT have to have the .json extension to be treated like JSON files.

@@ -28,7 +28,7 @@ exports.write = function(path, key, value){
 
         }
 
-        fs.writeFileSync(path, JSON.stringify(obj))
+        fs.writeFileSync(path, JSON.stringify(obj, null, 1))
     } else {
         throw new Error('Expected key and value')
     }
