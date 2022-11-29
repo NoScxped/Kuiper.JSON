@@ -33,7 +33,7 @@ Documentation:
 ```js
     //data.pinch(interim, key)
 
-    data.save("myNewInterim", "myCoolkey");
+    data.pinch("myNewInterim", "myCoolkey");
 
     //This will remove the Key from the specified Interim.
     //If the Interim does not exist, Kuiper.JSON will throw an error
