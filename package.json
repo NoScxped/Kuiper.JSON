@@ -1,7 +1,7 @@
 {
   "name": "kuiper.json",
-  "version": "1.2.1",
-  "description": "Basic JSON Data Handler",
+  "version": "1.4.0",
+  "description": "JSON Data Handler",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/noscxped/kuiper.json.git"
   },
-  "author": "Xotic-Apollo",
+  "author": "Apollo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noscxped/kuiper.json/issues"

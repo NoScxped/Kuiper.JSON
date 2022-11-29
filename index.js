@@ -1,4 +1,5 @@
 const fs = require('fs')
+var interim = {}
 //write a file
 exports.write = function(path, key, value){
 
@@ -39,12 +40,133 @@ exports.write = function(path, key, value){
     }
 
 }
+//create a new interim/append data to an interim
+exports.poke = function(intr, key, value){
+
+    if(interim[intr]){
+        if(key && value){
+
+            var obj = interim[intr]
+
+            Object.keys(obj).forEach((jsonKey) => {
+
+                if(jsonKey === key){
+
+                    if(key in obj){
+
+                        obj[jsonKey] = value
+
+                    }
+
+                }
+
+            })
+
+        if(key in obj === false){
+
+            obj[key] = value
+
+        }
+
+        interim[intr] = obj
+
+    } else {
+        throw new Error('Expected key and value')
+    }
+
+    } else {
+
+        interim[intr] =  JSON.parse(`{"${key}": "${value}"}`)
+
+    }
+
+}
+//save an interim to file
+exports.save = function(intr, path){
+
+    if(!interim[intr]){throw new Error('Interim ' + iintr + ' does not exist.')}
+    try {
+        fs.writeFileSync(path, JSON.stringify(interim[intr], null, 1), 'utf-8')
+    } catch(err) {
+        console.log(err)
+    }
+
+}
+//delete a interim
+exports.pinch = function(intr, key){
+
+    if(interim[intr]){
+
+        if(key){
+
+        var obj = interim[intr]
+        var res = ''
+        
+        for(var i in obj){
+
+            if (i = key){
+
+                res = i
+
+            }
+
+        }
+
+        if(obj[res] != undefined){
+
+            delete obj[res]
+            interim[intr] = obj
+
+        }
+    } else {
+        delete interim[intr]
+    }
+
+    } else {
+        throw new Error ('The Interim ' + intr + ' does not exist.')
+    }
+
+}
+exports.grab = function(intr, key){
+
+        if(interim[intr]){
+            if(key){
+    
+            var obj = interim[intr]
+            var res = ''
+    
+    
+        for(var i in obj){
+    
+            if (i = key){
+    
+                res = i
+    
+            }
+    
+        }
+
+        return obj[res]
+    
+        } else {
+    
+        var text = JSON.stringify(interim[intr], null, 1)
+        return text
+    
+    }
+    
+        } else {
+    
+            throw new Error ('The Interim ' + intr + ' does not exist.')
+    
+        }
+
+}
 //read a file
 exports.read = function(path, key) {
 
     if(fs.existsSync(path)){
         if(key){
-
 
         var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
         var res = ''
