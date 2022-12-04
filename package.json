@@ -1,6 +1,6 @@
 {
   "name": "kuiper.json",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "JSON Data Handler",
   "main": "index.js",
   "scripts": {

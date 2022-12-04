@@ -1,5 +1,5 @@
 const fs = require('fs')
-var interim = {}
+var kuiperInterim = {}
 //write a file
 exports.write = function(path, key, value){
 
@@ -41,12 +41,12 @@ exports.write = function(path, key, value){
 
 }
 //create a new interim/append data to an interim
-exports.poke = function(intr, key, value){
+exports.interimWrite = function(intr, key, value){
 
-    if(interim[intr]){
+    if(kuiperInterim[intr]){
         if(key && value){
 
-            var obj = interim[intr]
+            var obj = kuiperInterim[intr]
 
             Object.keys(obj).forEach((jsonKey) => {
 
@@ -68,7 +68,7 @@ exports.poke = function(intr, key, value){
 
         }
 
-        interim[intr] = obj
+        kuiperInterim[intr] = obj
 
     } else {
         throw new Error('Expected key and value')
@@ -76,30 +76,30 @@ exports.poke = function(intr, key, value){
 
     } else {
 
-        interim[intr] =  JSON.parse(`{"${key}": "${value}"}`)
+        kuiperInterim[intr] =  JSON.parse(`{"${key}": "${value}"}`)
 
     }
 
 }
 //save an interim to file
-exports.save = function(intr, path){
+exports.interimSave = function(intr, path){
 
-    if(!interim[intr]){throw new Error('Interim ' + iintr + ' does not exist.')}
+    if(!kuiperInterim[intr]){throw new Error('Interim ' + intr + ' does not exist.')}
     try {
-        fs.writeFileSync(path, JSON.stringify(interim[intr], null, 1), 'utf-8')
+        fs.writeFileSync(path, JSON.stringify(kuiperInterim[intr], null, 1), 'utf-8')
     } catch(err) {
         console.log(err)
     }
 
 }
 //delete a interim
-exports.pinch = function(intr, key){
+exports.interimDelete = function(intr, key){
 
-    if(interim[intr]){
+    if(kuiperInterim[intr]){
 
         if(key){
 
-        var obj = interim[intr]
+        var obj = kuiperInterim[intr]
         var res = ''
         
         for(var i in obj){
@@ -115,11 +115,11 @@ exports.pinch = function(intr, key){
         if(obj[res] != undefined){
 
             delete obj[res]
-            interim[intr] = obj
+            kuiperInterim[intr] = obj
 
         }
     } else {
-        delete interim[intr]
+        delete kuiperInterim[intr]
     }
 
     } else {
@@ -127,12 +127,13 @@ exports.pinch = function(intr, key){
     }
 
 }
-exports.grab = function(intr, key){
+//grab an interim
+exports.interimRead = function(intr, key){
 
-        if(interim[intr]){
+        if(kuiperInterim[intr]){
             if(key){
     
-            var obj = interim[intr]
+            var obj = kuiperInterim[intr]
             var res = ''
     
     
@@ -150,7 +151,7 @@ exports.grab = function(intr, key){
     
         } else {
     
-        var text = JSON.stringify(interim[intr], null, 1)
+        var text = JSON.stringify(kuiperInterim[intr], null, 1)
         return text
     
     }
@@ -160,6 +161,29 @@ exports.grab = function(intr, key){
             throw new Error ('The Interim ' + intr + ' does not exist.')
     
         }
+
+}
+//pull a file
+exports.interimImport = function(path, intr) {
+
+    if(!intr){throw new Error ('Interim Name Needed.')}
+    if(!path){throw new Error('Path Needed.')}
+
+    if(fs.existsSync(path)){
+
+        try {
+            var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
+            kuiperInterim[intr] = obj
+            return kuiperInterim[intr]
+        } catch(err){
+            console.log(err)
+        }
+
+    } else {
+
+        throw new Error ('File not found: ' + path)
+
+    }
 
 }
 //read a file

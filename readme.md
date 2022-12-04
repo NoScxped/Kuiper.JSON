@@ -2,51 +2,11 @@
 
 *Getting started with Kupier.JSON*
 
-*Interims are **Kuiper.JSON's** way of temporarily storing JSON data without saving it to a file! Think of an **"Interim"** as an unsaved JSON file being edited.*
 
-
-Documentation:
+**Documentation:**
 
 ```js
     const data = require('kuiper.json');
-```
-
-```js
-    //data.poke(interim, key, value)
-
-    data.poke("myNewInterim", "myCoolKey", "myCoolValue");
-
-    //This will add the Key and Value to the Interim.
-    //If the Interim does not exist, one will be created.
-```
-
-```js
-    //data.grab(interim, key)
-
-    data.grab("myNewInterim", "myCoolKey");
-
-    //This will return the value of the specified Key from the specified Interim.
-    //If the Interim does not exist, Kuiper.JSON will throw an error
-    //If the Key does not exist, Kuiper.JSON will return Undefined
-```
-
-```js
-    //data.pinch(interim, key)
-
-    data.pinch("myNewInterim", "myCoolkey");
-
-    //This will remove the Key from the specified Interim.
-    //If the Interim does not exist, Kuiper.JSON will throw an error
-    //If the Key is not specified, the entire Interim will be deleted.
-```
-
-```js
-    //data.save(interim, path)
-
-    data.save("myNewInterim", "interim.JSON");
-
-    //This will save the Interim to the specified path.
-    //If the Interim does not exist, Kuiper.JSON will throw an error
 ```
 
 ```js
@@ -94,4 +54,58 @@ Documentation:
     //If the path is not a directory, it will throw an error
 ```
 
-DISCLAIMER: The files do NOT have to have the .json extension to be treated like JSON files.
+**Interims**
+
+*Interims are **Kuiper.JSON's** way of temporarily storing JSON data without saving it to a file! Think of an **"Interim"** as an unsaved JSON file being edited.*
+
+```js
+    //data.interimWrite(interim, key, value)
+
+    data.interimWrite("myNewInterim", "myCoolKey", "myCoolValue");
+
+    //This will add the Key and Value to the Interim.
+    //If the Interim does not exist, one will be created.
+```
+
+```js
+    //data.interimSave(interim, path)
+
+    data.interimSave("myNewInterim", "interim.JSON");
+
+    //This will save the Interim to the specified path.
+    //If the Interim does not exist, Kuiper.JSON will throw an error
+```
+
+```js
+    //data.interimImport(path, interim)
+
+    data.interimImport("interim.JSON", "myNewInterim");
+
+    //Reads an entire JSON file and saves it to an Interim, creating a new one if need be.
+    //If a Interim name is not provided, Kuiper.JSON will throw an error.
+    //If a Path is not provided, Kuiper.JSON will throw an error.
+
+```
+
+```js
+    //data.interimRead(interim, key)
+
+    data.interimRead("myNewInterim", "myCoolKey");
+
+    //This will return the value of the specified Key from the specified Interim.
+    //If no Key is provided, the entire Interim will be returned.
+    //If the Interim does not exist, Kuiper.JSON will throw an error
+    //If the Key does not exist, Kuiper.JSON will return Undefined
+```
+
+```js
+    //data.interimDelete(interim, key)
+
+    data.interimDelete("myNewInterim", "myCoolkey");
+
+    //This will remove the Key from the specified Interim.
+    //If the Interim does not exist, Kuiper.JSON will throw an error
+    //If the Key is not specified, the entire Interim will be deleted.
+```
+
+*DISCLAIMER: The files do **NOT** have to have the .json extension to be treated like JSON files.*
