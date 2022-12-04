@@ -1,7 +1,7 @@
 {
   "name": "kuiper.json",
-  "version": "1.5.1",
-  "description": "JSON Data Handler",
+  "version": "1.5.2",
+  "description": "JSON Data Storage Made Easy!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
