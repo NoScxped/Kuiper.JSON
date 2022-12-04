@@ -1,6 +1,6 @@
 {
   "name": "kuiper.json",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "JSON Data Handler",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/noscxped/kuiper.json.git"
   },
+  "keywords": [
+    "data",
+    "JSON",
+    "handler",
+    "storage"
+  ],
   "author": "Apollo",
   "license": "ISC",
   "bugs": {
