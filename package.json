@@ -1,6 +1,6 @@
 {
   "name": "kuiper.json",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "JSON Data Storage Made Easy!",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,14 @@
     "url": "git+https://github.com/noscxped/kuiper.json.git"
   },
   "keywords": [
-    "data",
+    "JSON data storage",
     "JSON",
-    "handler",
-    "storage"
+    "JSON storage",
+    "storage",
+    "data storage",
+    "json data",
+    "json",
+    "storage method"
   ],
   "author": "Apollo",
   "license": "ISC",
