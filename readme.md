@@ -74,7 +74,7 @@
 ```js
     //interim.save(interim, path)
 
-    interim.save("myNewInterim", "interim.JSON");
+    interim.save("interim.JSON", "myNewInterim");
 
     //This will save the Interim to the specified path.
     //If the Interim does not exist, Kuiper.JSON will throw an error
@@ -110,6 +110,14 @@
     //This will remove the Key from the specified Interim.
     //If the Interim does not exist, Kuiper.JSON will throw an error
     //If the Key is not specified, the entire Interim will be deleted.
+```
+
+```js
+    //interim.all()
+
+    interim.all()
+
+    //This function will return all interims currently loaded.
 ```
 
 *DISCLAIMER: The files do **NOT** have to have the .json extension to be treated like JSON files.*

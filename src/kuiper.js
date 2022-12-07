@@ -1,144 +1,69 @@
 const fs = require('fs')
-//write a file
-exports.write = function(path, key, value){
-
+function scan(path, key, returnFullObj){
     if(fs.existsSync(path)){
+        var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
+        var res = ''
+        for(var i in obj){
+            if (i = key){
+                res = i
+            }
+        }
+    if(returnFullObj){return obj} else {return obj[res]};
+} else {
+    throw new Error ('File not found: ' + path)
+}};
+//write to a file
+exports.write = function(path, key, value){
         if(key && value){
 
-            var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
-
-            Object.keys(obj).forEach((jsonKey) => {
-
-                if(jsonKey === key){
-
-                    if(key in obj){
-
-                        obj[jsonKey] = value
-
-                    }
-
-                }
-
-            })
-
-        if(key in obj === false){
+            var obj = scan(path,key,true)
 
             obj[key] = value
-
-        }
-
-        fs.writeFileSync(path, JSON.stringify(obj, null, 1))
-    } else {
-        throw new Error('Expected key and value')
-    }
+            fs.writeFileSync(path, JSON.stringify(obj, null, 1))
 
     } else {
-
-        fs.writeFileSync(path, `{"${key}": "${value}"}`)
-
+      fs.writeFileSync(path, `{"${key}": "${value}"}`)
     }
 
 }
 //read a file
 exports.read = function(path, key) {
 
-    if(fs.existsSync(path)){
-        if(key){
-
-        var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
-        var res = ''
-
-
-    for(var i in obj){
-
-        if (i = key){
-
-            res = i
-
-        }
-
-    }
-
-    return obj[res]
-
-    } else {
-
-    var text = fs.readFileSync(path, `utf-8`)
-    return text
-
-}
-
-    } else {
-
-        throw new Error ('File not found: ' + path)
-
+    var val = scan(path, key, false)
+    if(!val){return fs.readFileSync(path, `utf-8`);
+} else {
+        return val
     }
 
 }
 //delete a key/file
 exports.delete = function (path, key){
 
-    if(fs.existsSync(path)){
-
         if(key){
 
-        
+        var obj = scan(path,key,true)
 
-        var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
-        var res = ''
-        
-        for(var i in obj){
+        if(obj[key] != undefined){
 
-            if (i = key){
-
-                res = i
-
-            }
-
-        }
-
-        if(obj[res] != undefined){
-
-            delete obj[res]
-            fs.writeFileSync(path, JSON.stringify(obj))
+            delete obj[key]
+            fs.writeFileSync(path, JSON.stringify(obj, null, 1))
 
         }
     } else {
         fs.unlinkSync(path)
-    }
-
-    } else {
-        throw new Error ('File not found: ' + path)
     }
 }
 //check if a file exists
 exports.exists = function(path, key, value){
 
     if(fs.existsSync(path)){
-
         if(key){
 
-
-            var obj = JSON.parse(fs.readFileSync(path, `utf-8`))
-            var res = ''
-    
-    
-        for(var i in obj){
-    
-            if (i = key){
-    
-                res = i
-    
-            }
-    
-        }
-
-        if(!obj[res]){return false } else {return true}
+            var obj = scan(path,key,true)
+            if(!obj[key]){return false} else {return true}
     
         } else {
-    
             return true
-
         }
     
     } else {
@@ -147,14 +72,10 @@ exports.exists = function(path, key, value){
 
         
 }
-
-
-
 //Get each file in a directory
 exports.readDir = function(path){
 
     if(fs.existsSync(path)){
-
         if(fs.statSync(path).isDirectory()){
 
             var arr = []
@@ -172,9 +93,7 @@ exports.readDir = function(path){
         } else {
             throw new Error ('Not a Directory')
         }
-
     } else {
         throw new Error ('Directory not found')
     }
-
 }

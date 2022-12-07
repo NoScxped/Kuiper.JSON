@@ -1,48 +1,36 @@
 const fs = require('fs')
 var kuiperInterim = {}
+function scan(intrm, key, returnFullObj){
+    if(kuiperInterim[intrm]){
+        var obj = kuiperInterim[intrm]
+        var res = ''
+        for(var i in obj){
+            if (i = key){
+                res = i
+            }
+        }
+    if(returnFullObj){return obj} else {return obj[res]};
+} else {
+    throw new Error ('Interim not found: ' + intrm)
+}};
 //create a new interim/append data to an interim
 exports.write = function(intr, key, value){
 
     if(kuiperInterim[intr]){
         if(key && value){
 
-            var obj = kuiperInterim[intr]
-
-            Object.keys(obj).forEach((jsonKey) => {
-
-                if(jsonKey === key){
-
-                    if(key in obj){
-
-                        obj[jsonKey] = value
-
-                    }
-
-                }
-
-            })
-
-        if(key in obj === false){
-
-            obj[key] = value
-
-        }
-
-        kuiperInterim[intr] = obj
+            var intrm = kuiperInterim[intr]
+            intrm[key] = value
 
     } else {
         throw new Error('Expected key and value')
     }
-
-    } else {
-
-        kuiperInterim[intr] =  JSON.parse(`{"${key}": "${value}"}`)
-
-    }
-
+        } else {
+            kuiperInterim[intr] =  JSON.parse(`{"${key}": "${value}"}`)
+        }
 }
 //save an interim to file
-exports.save = function(intr, path){
+exports.save = function(path, intr){
 
     if(!kuiperInterim[intr]){throw new Error('Interim ' + intr + ' does not exist.')}
     try {
@@ -55,73 +43,27 @@ exports.save = function(intr, path){
 //delete a interim
 exports.delete = function(intr, key){
 
-    if(kuiperInterim[intr]){
+        var intrm = scan(intr, key, true);
 
-        if(key){
+        if(key != undefined){
 
-        var obj = kuiperInterim[intr]
-        var res = ''
-        
-        for(var i in obj){
+            if(intrm[key]){delete intrm[key]}
 
-            if (i = key){
-
-                res = i
-
-            }
-
-        }
-
-        if(obj[res] != undefined){
-
-            delete obj[res]
-            kuiperInterim[intr] = obj
-
-        }
-    } else {
+    }
+     else {
         delete kuiperInterim[intr]
     }
-
-    } else {
-        throw new Error ('The Interim ' + intr + ' does not exist.')
-    }
-
 }
 //grab an interim
 exports.read = function(intr, key){
 
-        if(kuiperInterim[intr]){
-            if(key){
-    
-            var obj = kuiperInterim[intr]
-            var res = ''
-    
-    
-        for(var i in obj){
-    
-            if (i = key){
-    
-                res = i
-    
-            }
-    
-        }
+        var obj = scan(intr, key, true)
+  
+        if(obj[key] === undefined) {
 
-        return obj[res]
-    
-        } else {
-    
-        var text = JSON.stringify(kuiperInterim[intr], null, 1)
-        return text
-    
-    }
-    
-        } else {
-    
-            throw new Error ('The Interim ' + intr + ' does not exist.')
-    
-        }
+        return JSON.stringify(kuiperInterim[intr], null, 1);
 
+    } else {return obj[key]}
 }
 //pull a file
 exports.import = function(path, intr) {
@@ -146,3 +88,4 @@ exports.import = function(path, intr) {
     }
 
 }
+exports.all = function(){return kuiperInterim}
