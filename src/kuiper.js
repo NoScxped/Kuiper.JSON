@@ -11,10 +11,11 @@ function scan(path, key, returnFullObj){
     if(returnFullObj){return obj} else {return obj[res]};}};
 //write to a file
 exports.write = function(path, key, value){
-        if(key && value){
 
             var obj = scan(path,key,true)
 
+            if(obj != undefined){
+                
             obj[key] = value
             fs.writeFileSync(path, JSON.stringify(obj, null, 1))
 
