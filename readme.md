@@ -4,14 +4,14 @@
 <h2 style='margin:10px;user-select: none;font-size:30px;text-align:center;color:white'>JSON Data Storage made easy!</h2>
 
 <style>
-        @keyframes scroll {
-    from {background-position: bottom left;
-    }
-    to {
-        background-position: top right;
-    }
+@keyframes scroll {
+from {background-position: bottom left;
 }
-    </style>
+to {
+background-position: top right;
+}
+}
+</style>
 </div>
 *Getting started with Kupier.JSON*
 
