@@ -1,6 +1,6 @@
 {
   "name": "kuiper.json",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "JSON Data Storage Made Easy!",
   "main": "index.js",
   "scripts": {

@@ -1,9 +1,9 @@
 <div align="center" style='border: 3px solid transparent;border-radius: 10px;border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);border-image-slice: 1;margin: auto;display: flex;flex-direction: column;background-image: url("https://noscxped.github.io/solace/background.png");text-align: center;align-items: center;align-self: center;margin-top: 25px;margin-bottom: 25px;animation:scroll 175s linear infinite;'>
 
-    <h1 style='margin:10px;user-select: none;font-size:50px;text-align:center;color:white'>Kuiper.JSON</h1>
-    <h2 style='margin:10px;user-select: none;font-size:30px;text-align:center;color:white'>JSON Data Storage made easy!</h2>
-    
-    <style>
+<h1 style='margin:10px;user-select: none;font-size:50px;text-align:center;color:white'>Kuiper.JSON</h1>
+<h2 style='margin:10px;user-select: none;font-size:30px;text-align:center;color:white'>JSON Data Storage made easy!</h2>
+
+<style>
         @keyframes scroll {
     from {background-position: bottom left;
     }
