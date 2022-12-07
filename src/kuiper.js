@@ -8,10 +8,7 @@ function scan(path, key, returnFullObj){
                 res = i
             }
         }
-    if(returnFullObj){return obj} else {return obj[res]};
-} else {
-    throw new Error ('File not found: ' + path)
-}};
+    if(returnFullObj){return obj} else {return obj[res]};}};
 //write to a file
 exports.write = function(path, key, value){
         if(key && value){
